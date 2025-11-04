@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by jjiji16 (http://jsbin.com/qananup/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쉬어가는 구간</title>
+    <link rel="stylesheet" href="style.css">
+    <style id="jsbin-css">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    font-family: 'NanumHumanlight';
+    background: linear-gradient(135deg, #e0ffe0 0%,  #A3FFD4 30%, #ffffcc 100%); 
+    padding-top: 70px; 
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 10;
+}
+
+.nav-item {
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.title {
+    font-size: 18px;
+    color: #333;
+}
+
+.left, .right {
+    color: black;
+    cursor: pointer;
+}
+
+.content {
+    width: 90%; 
+    min-height: 800px;
+    margin: 20px auto;
+    position: relative;
+    background-color: white;
+    border-color: black;
+    border: 0.1rem outset black;
+    border-radius: 1000px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+
+}
+
+.icon-link {
+    position: absolute;
+    display: block;
+    pointer-events: auto; /* 아이콘 자체는 클릭 가능하게 되돌림 */
+    text-align: center;
+    
+}
+
+.icon-link:nth-child(1) {
+    top: 25.5vh;    /* 화면 상단에서 20% 위치 */
+    left: 42.5vw;   /* 화면 왼쪽에서 10% 위치 */
+    width: 40px; /* 아이콘 크기 (필요에 따라 조절) */
+    
+}
+
+/* HTML의 두 번째 아이콘에 적용할 위치 */
+.icon-link:nth-child(2) {
+    top: 41.5vh;    /* 화면 상단에서 30% 위치 */
+    right: 63.3vw;  /* 화면 오른쪽에서 15% 위치 */
+    width: 35px; /* 아이콘 크기 (필요에 따라 조절) */
+    
+}
+
+/* HTML의 세 번째 아이콘에 적용할 위치 */
+.icon-link:nth-child(3) {
+    bottom: 33.6vh; /* 화면 하단에서 10% 위치 */
+    left: 49.4vw;   /* 화면 왼쪽에서 50% 위치 */
+    transform: translateX(-50%); /* 정확히 중앙 정렬 */
+    width: 38px; /* 아이콘 크기 (필요에 따라 조절) */
+    
+}
+
+.icon-link:nth-child(4) {
+    bottom: 44.8vh; /* 화면 하단에서 10% 위치 */
+    left: 36.2vw;   /* 화면 왼쪽에서 50% 위치 */
+    transform: translateX(-50%); /* 정확히 중앙 정렬 */
+    width: 100px; /* 아이콘 크기 (필요에 따라 조절) */
+  
+}
+
+.icon-link:nth-child(5) {
+    bottom: 42vh; /* 화면 하단에서 10% 위치 */
+    left: 46vw;
+    transform: translateX(-50%);
+    width: 130px; /* 아이콘 크기 (필요에 따라 조절) */
+  
+}
+
+/* 아이콘 6 */
+.icon-link:nth-child(6) {
+    top: 40vh;
+    left: 43.3vw;
+    width: 42px; /* 아이콘 크기 (필요에 따라 조절) */
+  
+}
+
+/* 아이콘 7 */
+.icon-link:nth-child(7) {
+    bottom: 59vh;
+    left: 50.8vw;
+    width: 46px; /* 아이콘 크기 (필요에 따라 조절) */
+  
+}
+
+/* 아이콘 8 */
+.icon-link:nth-child(8) {
+    top: 40.7vh;
+    right: 44.4vw;
+    width:56px; /* 아이콘 크기 (필요에 따라 조절) */
+  
+}
+
+/* 아이콘 9 */
+.icon-link:nth-child(9) {
+    top: 29vh;
+    left: 62vw;
+    width: 80px; /* 아이콘 크기 (필요에 따라 조절) */
+  
+}
+
+/* 아이콘 10 */
+.icon-link:nth-child(10) {
+    top: 16.7vh;
+    right: 30vw;
+    width: 35px; /* 아이콘 크기 (필요에 따라 조절) */
+  
+}
+
+/* 아이콘 11 */
+.icon-link:nth-child(11) {
+    top: 40.9vh;
+    left: 23.3vw;
+    width: 50px; /* 아이콘 크기 (필요에 따라 조절) */
+  
+}
+
+/* 아이콘 12 */
+.icon-link:nth-child(12) {
+    bottom: 47.5vh;
+    left: 25vw;
+    width: 27px; /* 아이콘 크기 (필요에 따라 조절) */
+  
+}
+
+.overlay-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+}
+
+
+
+</style>
+</head>
+<body>
+<link href="https://hangeul.pstatic.net/hangeul_static/css/NanumHuman.css" rel="stylesheet">
+
+
+    <header class="top-bar">
+        <a href="#back" class="nav-item left">뒤로가기</a>
+        <h1 class="nav-item title">쉬어가는 구간</h1>
+        <a href="#park-finder-page" class="nav-item right">공원찾기</a>
+    </header>
+
+    <main class="content">
+                <img src="https://imgur.com/ZSAQumd.png" alt="쉬어가는 구간 배경 이미지" class="main-image">
+    </main>
+    <div class="icon-overlay-container">
+                    
+                    <a href="#icon-intro-page-1" class="icon-link">
+                        <img src="https://i.imgur.com/mYEcAgn.png" alt="아이콘1" class="overlay-icon">
+                    </a>
+
+                    <a href="#icon-intro-page-2" class="icon-link">
+                        <img src="https://i.imgur.com/Z5UZmkp.png" alt="아이콘2" class="overlay-icon">
+                    </a>
+                    
+                    <a href="#icon-intro-page-3" class="icon-link">
+                        <img src="https://imgur.com/3sjcdai.png" alt="아이콘3" class="overlay-icon">
+                    </a>
+      <a href="#icon-intro-page-4" class="icon-link">
+                        <img src="https://imgur.com/MpdST8m.png" alt="아이콘4" class="overlay-icon">
+                    </a>
+      <a href="#icon-intro-page-5" class="icon-link">
+        <img src="https://imgur.com/hswLVpa.png" alt="아이콘5" class="overlay-icon">
+    </a>
+    <a href="#icon-intro-page-6" class="icon-link">
+        <img src="https://imgur.com/XLJyNaa.png" alt="아이콘6" class="overlay-icon">
+    </a>
+    <a href="#icon-intro-page-7" class="icon-link">
+        <img src="https://imgur.com/7xXyCAz.png" alt="아이콘7" class="overlay-icon">
+    </a>
+    <a href="#icon-intro-page-8" class="icon-link">
+        <img src="https://imgur.com/tQgYLen.png" alt="아이콘8" class="overlay-icon">
+    </a>
+    <a href="#icon-intro-page-9" class="icon-link">
+        <img src="https://imgur.com/T2kDUVt.png" alt="아이콘9" class="overlay-icon">
+    </a>
+    <a href="#icon-intro-page-10" class="icon-link">
+        <img src="https://imgur.com/Tzdi6tg.png" alt="아이콘10" class="overlay-icon">
+    </a>
+    <a href="#icon-intro-page-11" class="icon-link">
+        <img src="https://imgur.com/MsFxuin.png" alt="아이콘11" class="overlay-icon">
+    </a>
+    <a href="#icon-intro-page-12" class="icon-link">
+        <img src="https://imgur.com/dNNfe2w.png" alt="아이콘12" class="overlay-icon">
+    </a>
+                    
+    </div>
+</body>
+</html>
